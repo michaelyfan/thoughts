@@ -1,0 +1,68 @@
+
+
+body {
+	font-family: Lato, sans-serif;
+	display: flex;
+	justify-content: center;
+	background: url("./background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+.fa {
+	cursor: pointer;
+	margin-left: 5px;
+
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
+}
+.fa:hover {
+	color: rgb(40,40,40);
+}
+
+
+ul {
+	list-style: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+#body-wrapper {
+	margin-top: 50px;
+}
+
+.text-input-wrapper {
+
+}
+
+.form-control {
+	margin: 10px;
+}
+
+#header-wrapper {
+	text-align: center;
+}
+
+#input-wrapper {
+	text-align: center;
+}
+
+.quotes {
+	margin-top: 20px;
+}
+.quote {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	max-width: 636px;
+}
+.quote-text {
+	font-size: 36px;
+}
+.quote-name {
+	opacity: 0.5;
+	font-style: italic;
+}

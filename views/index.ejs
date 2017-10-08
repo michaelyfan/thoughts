@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Thoughts</title>
+        
+        <!-- Bootstrap -->
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css' integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M' crossorigin='anonymous'>
+
+        <!-- Font awesome -->
+        <script src="https://use.fontawesome.com/c3fee09213.js"></script>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+        <link rel='stylesheet' type='text/css' href='styles.css'>
+
+    </head>
+    <body>
+        <div id='body-wrapper'>
+
+            <div id='header-wrapper'>
+                <h1>What are you thinking?</h1>
+                <p>
+                    Submit your quote for the world to see. Make it happy, funny, tragic, inspirational, or cynical.
+                    <br />
+                    If you're feeling particularly emotional about a quote, you can up/downvote it more than once.
+                </p>
+            </div>
+            <!-- header-wrapper -->
+
+            <div id='input-wrapper'>
+                
+                <div id='form-wrapper'>
+                    <form action='/quotes' method='POST'>
+                        <div id='text-input-wrapper'>
+                            <input type='text' class='form-control' placeholder='name' name='name' id='select'>
+                            <input type='text' class='form-control' placeholder='quote' name='quote'>
+                        </div>
+                        <button class='btn btn-success' type='submit'>Submit</button>
+                    </form>
+                </div>
+                
+                <div id='quotes-wrapper'>
+                    <div class='quotes'>
+                        <% quotes.sort(function(a, b) {
+                             return b.rating - a.rating;
+                        }); %>
+                        <% for(var i=0; i < quotes.length; i++) {%>
+
+                            <div class='quote'>
+                                
+                                <span class='quote-text'><%= quotes[i].quote %></span>
+                                <span class='quote-name'><%= quotes[i].name %></span>
+                                <i class="fa fa-times-circle deleteButton" data-id='<%= quotes[i]._id %>' aria-hidden="true"></i>
+
+                                    <div id='quote-info-wrapper'>
+                                        
+                                        <span class='quote-rating'><%= quotes[i].rating %></span>
+                                        <i class="fa fa-smile-o voteUpButton" data-id='<%= quotes[i]._id %>' data-rating='<%= quotes[i].rating %>' aria-hidden="true"></i>
+                                        <i class="fa fa-frown-o voteDownButton" data-id='<%= quotes[i]._id %>' data-rating='<%= quotes[i].rating %>' aria-hidden="true"></i>
+                                    </div>
+                                    
+                            </div>
+
+                            <!-- <li class='quote'>
+                                
+                                <span><%= quotes[i].quote %></span>
+                                <i class="fa fa-times-circle deleteButton" data-id='<%= quotes[i]._id %>' aria-hidden="true"></i>
+                                    <div id='quote-info-wrapper'>
+                                        <span><%= quotes[i].name %></span>
+                                        <span><%= quotes[i].rating %></span>
+                                        <i class="fa fa-smile-o voteUpButton" data-id='<%= quotes[i]._id %>' data-rating='<%= quotes[i].rating %>' aria-hidden="true"></i>
+                                        <i class="fa fa-frown-o voteDownButton" data-id='<%= quotes[i]._id %>' data-rating='<%= quotes[i].rating %>' aria-hidden="true"></i>
+                                    </div>
+                                    
+                            </li> -->
+                        <% } %>
+                    </div>
+                </div> 
+                <!-- quotes-wrapper -->
+
+            </div>
+            <!-- input-wrapper -->
+            
+        </div>
+        <!-- body-wrapper -->
+        
+        <script src='main.js'></script>
+    </body>
+
+</html>
