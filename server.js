@@ -13,7 +13,7 @@ const MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
 
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.set('port', (process.env.PORT || 3000));
@@ -78,28 +78,3 @@ app.delete('/quotes', (req, res) => {
         }
     )
 })
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-// app.put('/quotes', (req, res) => {
-//     db.collection('quotes').findOneAndUpdate(
-//         {
-//             name: 'batman'
-//         },
-//         {
-//             $set: {
-//                 name: req.body.name,
-//                 quote: req.body.quote
-//             }
-//         },
-//         {
-//             sort: {_id: -1}
-//         },
-//         (err, result) => {
-//             if (err) return res.send(err);
-//             res.send(result);
-//         }
-//     )
-// })
