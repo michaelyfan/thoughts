@@ -13,9 +13,10 @@ const MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
 
 app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.use(express.static(__dirname + 'public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.set('port', (process.env.PORT || 3000));
 
 MongoClient.connect('mongodb://testuser:testpass@ds123084.mlab.com:23084/michael-sandbox-db', (err, database) => {
     if (err) return console.log(err);
@@ -50,7 +51,7 @@ app.put('/quotes', (req, res) => {
     }
     db.collection('quotes').findOneAndUpdate(
         {
-            _id: ObjectId(req.body.id) 
+            _id: ObjectId(req.body.id)
         },
         {
             $set: {
@@ -67,7 +68,7 @@ app.put('/quotes', (req, res) => {
 app.delete('/quotes', (req, res) => {
     db.collection('quotes').findOneAndDelete(
         {
-            _id: ObjectId(req.body.id) 
+            _id: ObjectId(req.body.id)
         },
         (err, result) => {
             if (err) return res.send(500, err);
@@ -76,8 +77,11 @@ app.delete('/quotes', (req, res) => {
             })
         }
     )
-
 })
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 // app.put('/quotes', (req, res) => {
 //     db.collection('quotes').findOneAndUpdate(
