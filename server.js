@@ -21,8 +21,8 @@ app.set('port', (process.env.PORT || 3000));
 MongoClient.connect('mongodb://testuser:testpass@ds123084.mlab.com:23084/michael-sandbox-db', (err, database) => {
     if (err) return console.log(err);
     db = database;
-    app.listen(3000, function() {
-        console.log('listening on 3000');
+    app.listen(app.get('port'), function() {
+        console.log('Listening on ' + app.get('port'));
     });
 
 })
